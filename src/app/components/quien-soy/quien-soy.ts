@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { QuienSoyService } from '../../services/quien-soy';
 
 @Component({
   selector: 'app-quien-soy',
@@ -7,4 +8,13 @@ import { RouterModule } from '@angular/router';
   templateUrl: './quien-soy.html',
   styleUrl: './quien-soy.css',
 })
-export class QuienSoy {}
+export class QuienSoy implements OnInit{
+
+  private quienSoyService = inject(QuienSoyService);
+
+  user = this.quienSoyService.userA;
+
+  ngOnInit(): void {
+    this.quienSoyService.loadUser();
+  }
+}
