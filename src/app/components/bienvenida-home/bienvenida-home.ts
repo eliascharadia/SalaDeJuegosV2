@@ -1,6 +1,7 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { Auth } from '../../services/auth';
+import { Navbar } from '../navbar/navbar';
 
 @Component({
   selector: 'app-bienvenida-home',
@@ -12,12 +13,12 @@ export class BienvenidaHome {
   private auth = inject(Auth);
   private router = inject(Router)
 
-  estaLogeado = this.auth.isAutheticated();
+  estaLogeado = computed(() => !!this.auth.user());
   showLoginModal = signal(false);
 
   goToGame(route: string) {
 
-    if (this.estaLogeado) {
+    if (this.estaLogeado()) {
 
       this.router.navigate([route]);
     } else {
