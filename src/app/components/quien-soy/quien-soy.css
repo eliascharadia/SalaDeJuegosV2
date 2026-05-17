@@ -1,0 +1,48 @@
+/* Fondo */
+.bg-gamer {
+  background: linear-gradient(135deg, #0f0f1a, #000);
+  min-height: 100vh;
+  color: white;
+}
+
+/* Tarjeta perfil */
+.profile-card {
+  background: rgba(20, 20, 35, 0.8);
+  backdrop-filter: blur(12px);
+  border-radius: 15px;
+  padding: 2rem;
+
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.4),
+    0 0 20px rgba(0,191,255,0.15);
+
+  border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Avatar */
+.avatar-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 3px solid #00bfff;
+  box-shadow: 0 0 15px rgba(0,191,255,0.6);
+}
+
+/* Tarjeta juego */
+.game-card {
+  background: rgba(20, 20, 35, 0.75);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 2rem;
+
+  border: 1px solid rgba(255,255,255,0.1);
+
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.4),
+    0 0 15px rgba(138,43,226,0.2);
+}
+
+/* Texto */
+.text-muted-custom {
+  color: rgba(255,255,255,0.6);
+}

@@ -1,0 +1,92 @@
+<div class="home-container d-flex flex-column align-items-center justify-content-center">
+
+  <h1 class="title mb-4">🎮 Sala de Juegos</h1>
+
+  <p class="subtitle mb-5">
+    Elegí un juego para comenzar a jugar
+  </p>
+
+  <div class="games-grid">
+
+    <a class="game-card" (click)="goToGame('/ahorcado')">
+      <span>🧠</span>
+      <p>Ahorcado</p>
+    </a>
+
+    <a class="game-card" (click)="goToGame('/maroymenor')">
+      <span>📈</span>
+      <p>Mayor o Menor</p>
+    </a>
+
+    <a class="game-card" (click)="goToGame('/preguntados')">
+      <span>❓</span>
+      <p>Preguntados</p>
+    </a>
+
+    <a class="game-card" (click)="goToGame('/juegopropio')">
+      <span>🔥</span>
+      <p>Juego Propio</p>
+    </a>
+
+  </div>
+
+  <main class="main-content">
+        <router-outlet></router-outlet>
+  </main>
+</div>
+
+@if (showLoginModal()) {
+
+  <div class="modal-backdrop-custom">
+
+    <div class="gamer-modal">
+
+      <h2>🔒 Debes iniciar sesión</h2>
+
+      <p>
+        Inicia sesión para jugar.
+      </p>
+
+      <div class="d-flex gap-3 justify-content-center mt-4">
+
+        <button 
+          class="btn btn-gamer"
+          routerLink="/login"
+          (click)="showLoginModal.set(false)">
+          🚀 Login
+        </button>
+
+        <button 
+          class="btn btn-secondary"
+          (click)="showLoginModal.set(false)">
+          Cancelar
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+}
+
+@if(showModalRegistradoReciente()){
+
+  <div class="modal-backdrop-custom">
+
+    <div class="gamer-modal">
+
+      <h2>🎉🎮 ¡Felicidades!</h2>
+
+      <p>Se ha registrado exitosamente.</p>
+
+      <button 
+        class="btn btn-gamer"
+        (click)="showModalRegistradoReciente.set(false)">
+        🚀 Comenzar a jugar
+      </button>
+
+    </div>
+
+  </div>
+}

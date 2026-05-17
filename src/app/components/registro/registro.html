@@ -1,0 +1,128 @@
+<div class="container-fluid vh-100 d-flex justify-content-center align-items-center bg-gamer">
+
+  <div class="register-box w-100">
+
+    <h3 class="register-title">📝 Crear Cuenta</h3>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+
+      <!-- Email -->
+      <div class="mb-3">
+        <input type="email" class="form-control gamer-input"
+          placeholder="Email"
+          formControlName="email">
+
+         @if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched){
+          <div class="text-danger small mt-1">
+              @if(registerForm.get('email')?.errors?.['required']){ El email es obligatorio }
+              @if(registerForm.get('email')?.errors?.['email']){ El formato es invalido }  
+          </div>
+        }
+      </div>
+
+      <!-- Nombre -->
+      <div class="mb-3">
+        <input type="text" class="form-control gamer-input"
+        placeholder="Nombre"
+        formControlName="name">
+
+        @if(registerForm.get('name')?.invalid && registerForm.get('name')?.touched){
+          <div class="text-danger small mt-1">
+              @if(registerForm.get('name')?.errors?.['required']){ El nombre es obligatorio }
+          </div>
+        }
+      </div>
+
+      <!-- Apellido -->
+      <div class="mb-3">
+        <input type="text" class="form-control gamer-input"
+        placeholder="Apellido"
+        formControlName="lastname">
+       @if(registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched){
+          <div class="text-danger small mt-1">
+              @if(registerForm.get('lastname')?.errors?.['required']){ El apellido es obligatorio }
+          </div>
+        }
+      </div>
+
+      <!-- Edad -->
+      <div class="mb-3">
+        <input type="number" class="form-control gamer-input"
+        formControlName="age"
+        >
+
+        @if(registerForm.get('age')?.invalid && registerForm.get('age')?.touched){
+          <div class="text-danger small mt-1">
+              @if(registerForm.get('age')?.errors?.['required']){ La edad es obligatoria }
+              @if(registerForm.get('age')?.errors?.['max']){ Ingrese una edad valida }
+              @if(registerForm.get('age')?.errors?.['min']){ Ingrese una edad valida }
+          </div>
+        }
+      </div>
+
+
+      <!-- Password -->
+      <div class="mb-3">
+        <input type="password" class="form-control gamer-input"
+          placeholder="Contraseña"
+          formControlName="password">
+
+         @if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched){
+          <div class="text-danger small mt-1">
+              @if(registerForm.get('password')?.errors?.['required']){ La contraseña es obligatoria }
+              @if(registerForm.get('password')?.errors?.['minLength']){ Minimo 6 caracteres }
+          </div>
+        }
+      </div>
+
+      <!-- Confirmar Password -->
+      <div class="mb-3">
+        <input type="password" class="form-control gamer-input"
+          placeholder="Confirmar contraseña"
+          formControlName="confirmPassword">
+
+         @if(registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched){
+          <div class="text-danger small mt-1">
+              @if(registerForm.get('confirmPassword')?.errors?.['required']){ La contraseña es obligatoria }
+              @if(registerForm.get('confirmPassword')?.errors?.['minLength']){ Minimo 6 caracteres }
+          </div>
+        }
+      </div>
+
+
+      <!-- Mensaje de error  -->
+       
+      @if (errorMensaje()) {
+
+        <div class="error-box mt-3">
+          <span>⚠ {{ errorMensaje() }}</span>
+        </div>
+
+      }
+
+      <!-- Botón -->
+      <div class="d-grid mb-3">
+        <button type="submit" class="btn btn-gamer" [disabled]="registerForm.invalid || registerForm.get('password')?.value !== registerForm.get('confirmPassword')?.value">
+          @if(loading()){ 
+            <span 
+              class="spinner-border spinner-border-sm me-2"
+              role="status"
+              aria-hidden="true">
+            </span>
+            Registrando ... 
+          }@else { 
+            🚀 Registrarse
+          }
+        </button>
+      </div>
+
+      <!-- Link -->
+      <div class="text-center text-muted-custom">
+        <small>¿Ya tenés cuenta? <a routerLink="/login">Iniciar sesión</a></small>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>
