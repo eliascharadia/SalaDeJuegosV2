@@ -1,59 +1,55 @@
-# SalaDeJuegosV2
+# 🎮 Sala de Juegos
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.11.
+## 👤 Alumno
+- Nombre: Elías Charadía
 
-## Development server
+---
 
-To start a local development server, run:
+## 🚀 Deploy
+- Enlace: https://sala-de-juegos-v2.vercel.app/
 
-```bash
-ng serve
-```
+---
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## 🛠️ Tecnologías utilizadas
 
-## Code scaffolding
+- Angular (Signals, Reactive Forms, Routing)
+- TypeScript
+- HTML5 / CSS3
+- Bootstrap
+- Supabase (Authentication y Backend as a Service)
+- Vercel (Deploy)
+- Git / GitHub
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+---
 
-```bash
-ng generate component component-name
-```
+## 📦 Descripción del proyecto
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+Este proyecto es una **Sala de Juegos web** donde los usuarios pueden registrarse, iniciar sesión y acceder a diferentes juegos interactivos desarrollados en Angular.  
+Incluye sistema de autenticación, gestión de usuarios y una interfaz estilo gamer.
 
-```bash
-ng generate --help
-```
+---
 
-## Building
+## 🧩 Sprints
 
-To build the project run:
+### 🟢 Sprint 1 – Estructura base y autenticación
+En este sprint se creó la estructura inicial del proyecto, configurando Angular y las rutas principales.  
+Se implementó el sistema de registro e inicio de sesión utilizando Supabase, junto con validaciones básicas de formularios.
 
-```bash
-ng build
-```
+---
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### 🟡 Sprint 2 – Interfaz y navegación
+Se desarrolló la interfaz principal de la sala de juegos, incluyendo el layout, navbar y estilos generales.  
+También se agregaron protecciones de rutas para usuarios autenticados y mejoras en la experiencia de usuario.
 
-## Running unit tests
+---
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### 🔵 Sprint 3 – Juegos y funcionalidades
+Se incorporaron los juegos dentro de la aplicación, como el juego del ahorcado, junto con lógica interactiva y manejo de estado.  
+Se mejoró la reactividad con Signals y se optimizó la estructura de componentes.
 
-```bash
-ng test
-```
+---
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 📌 Notas
+- El proyecto utiliza autenticación con Supabase.
+- El acceso a los juegos requiere estar logueado.
+- Se implementó diseño responsive y estilo gamer.
