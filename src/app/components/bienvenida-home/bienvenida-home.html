@@ -69,3 +69,24 @@
   </div>
 
 }
+
+@if(showModalRegistradoReciente()){
+
+  <div class="modal-backdrop-custom">
+
+    <div class="gamer-modal">
+
+      <h2>🎉🎮 ¡Felicidades!</h2>
+
+      <p>Se ha registrado exitosamente.</p>
+
+      <button 
+        class="btn btn-gamer"
+        (click)="showModalRegistradoReciente.set(false)">
+        🚀 Comenzar a jugar
+      </button>
+
+    </div>
+
+  </div>
+}

@@ -81,14 +81,37 @@
   animation: modalFade 0.2s ease;
 }
 
-@keyframes modalFade {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
 
-  to {
-    opacity: 1;
-    transform: scale(1);
+/* Entrada del fondo */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Entrada del modal */
+@keyframes popIn {
+  from {
+    transform: scale(0.1);
+    opacity: 0;
   }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Botón gamer */
+.btn-gamer {
+  background: linear-gradient(45deg, #00ffcc, #0077ff);
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-gamer:hover {
+  transform: scale(1.05);
 }

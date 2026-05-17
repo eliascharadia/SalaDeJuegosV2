@@ -1,7 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { Auth } from '../../services/auth';
-import { Navbar } from '../navbar/navbar';
 
 @Component({
   selector: 'app-bienvenida-home',
@@ -14,7 +13,15 @@ export class BienvenidaHome {
   private router = inject(Router)
 
   estaLogeado = computed(() => !!this.auth.user());
+  userRecien = computed(() => this.auth.userRecienRegistrado());
   showLoginModal = signal(false);
+  showModalRegistradoReciente = signal(false);
+  
+  constructor(){
+    if(this.userRecien()){
+      this.showModalRegistradoReciente.set(true)
+    }
+  }
 
   goToGame(route: string) {
 
