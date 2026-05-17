@@ -12,6 +12,7 @@ export class Auth {
 
   user = signal<Usuario | null>(null);
   isAutheticated = computed(() => this.user() !== null);
+  userRecienRegistrado = signal(false);
 
   constructor(){
     this.getSession();
