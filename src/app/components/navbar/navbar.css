@@ -1,0 +1,103 @@
+/* Fondo navbar */
+.bg-navbar {
+  background: rgba(10, 10, 20, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Logo */
+.navbar-brand {
+  color: #00bfff !important;
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem; /* importante porque la fuente es grande */
+  letter-spacing: 1px;
+}
+
+/* Links */
+.nav-link {
+  color: rgba(255,255,255,0.7) !important;
+  transition: 0.3s;
+}
+
+.nav-link:hover {
+  color: #00bfff !important;
+  text-shadow: 0 0 5px rgba(0,191,255,0.7);
+}
+
+/* Usuario */
+.user-name {
+  color: white;
+  font-size: 0.9rem;
+}
+
+/* Botón logout */
+.btn-logout {
+  background: transparent;
+  border: 1px solid #ff4d4d;
+  color: #ff4d4d;
+  transition: 0.3s;
+}
+
+.btn-logout:hover {
+  background: #ff4d4d;
+  color: white;
+  box-shadow: 0 0 10px rgba(255,77,77,0.6);
+}
+
+/* Botón login */
+.btn-login {
+  background: linear-gradient(90deg, #00bfff, #007bff);
+  border: none;
+  color: white;
+}
+
+.btn-login:hover {
+  filter: brightness(1.2);
+}
+
+.active-link {
+  color: white !important;
+  text-shadow: 0 0 8px #00bfff;
+}
+
+.btn-link-gamer {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+
+  color: #00bfff;
+  border: 1px solid rgba(0,191,255,0.5);
+
+  text-decoration: none;
+  font-size: 0.9rem;
+
+  transition: 0.3s;
+}
+
+.btn-link-gamer:hover {
+  background: rgba(0,191,255,0.15);
+  color: white;
+  box-shadow: 0 0 10px rgba(0,191,255,0.6);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* .navbar-collapse {
+  background: rgba(10,10,20,0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 10px;
+  margin-top: 10px;
+  padding: 10px;
+} */
+
+@media (min-width: 992px) {
+  .navbar-collapse {
+    background: transparent;
+    backdrop-filter: none;
+    margin-top: 0;
+    padding: 0;
+  }
+}

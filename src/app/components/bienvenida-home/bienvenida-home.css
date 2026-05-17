@@ -1,0 +1,117 @@
+.home-container {
+  background:
+    radial-gradient(circle at top, rgba(0,191,255,0.2), transparent 50%),
+    linear-gradient(135deg, #0f0f1a, #000);
+  /* height: 100vh; */
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #00bfff;
+}
+
+.subtitle {
+  color: #ccc;
+}
+
+.games-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 600px;
+}
+
+.game-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(0, 191, 255, 0.3);
+  border-radius: 15px;
+  padding: 25px;
+  text-decoration: none;
+  color: white;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
+}
+
+.game-card span {
+  font-size: 2rem;
+}
+
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.5);
+  border-color: #00bfff;
+}
+
+.modal-backdrop-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.7);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+  backdrop-filter: blur(6px);
+}
+
+.gamer-modal {
+  background: rgba(15,15,25,0.95);
+  border: 1px solid rgba(0,191,255,0.4);
+  border-radius: 20px;
+  padding: 30px;
+  width: 350px;
+
+  text-align: center;
+  color: white;
+
+  box-shadow: 0 0 25px rgba(0,191,255,0.3);
+
+  animation: modalFade 0.2s ease;
+}
+
+
+/* Entrada del fondo */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Entrada del modal */
+@keyframes popIn {
+  from {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Botón gamer */
+.btn-gamer {
+  background: linear-gradient(45deg, #00ffcc, #0077ff);
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.btn-gamer:hover {
+  transform: scale(1.05);
+}
