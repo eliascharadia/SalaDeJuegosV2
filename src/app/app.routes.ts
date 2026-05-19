@@ -6,7 +6,8 @@ import { BienvenidaHome } from './components/bienvenida-home/bienvenida-home';
 import { authGuard } from  './guards/auth'
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '', component: BienvenidaHome },
+    { path: '', redirectTo: '', pathMatch: 'full' },
     {
         path: '',
         component: BienvenidaHome,
@@ -15,9 +16,8 @@ export const routes: Routes = [
             { path: '', redirectTo: 'home', pathMatch: 'full' }
         ]
     },
-    { path: 'home', component: BienvenidaHome },
     { path: 'login', component: Login },
     { path: 'register', component: Registro },
     { path: 'quiensoy', component: QuienSoy },
-    { path: '**', redirectTo: 'home' }
+    { path: '**', redirectTo: '' }
 ];
