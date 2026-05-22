@@ -77,7 +77,7 @@ export class Auth {
     await this.login(usuarioData.email, usuarioData.password);
 
     // Navegar
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
 
     return null;
 }
@@ -105,7 +105,7 @@ async login(email: string, password: string) {
     edad: profile.edad
   });
 
-  this.router.navigate(['/home']);
+  this.router.navigate(['/']);
   return true;
 
 }
@@ -114,7 +114,7 @@ async logout() {
 
   await this.supabase.getClient().auth.signOut();
   this.user.set(null);
-  this.router.navigate(['/home']);
+  this.router.navigate(['/']);
   return true;
 }
 
