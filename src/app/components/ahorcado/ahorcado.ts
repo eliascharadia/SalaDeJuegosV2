@@ -25,7 +25,7 @@ export class Ahorcado {
 
   maxerrores = 6;
 
-  tiempoInicio = Date.now();
+  tiempoInicio = signal<number>(0);
 
   gameOver = signal(false);
 
@@ -41,6 +41,7 @@ export class Ahorcado {
   }
 
   startGame() {
+    this.tiempoInicio.set(Date.now());
     this.ahorcado.obtenerLetraRandom();
     this.palabra.set(this.ahorcado.palabraRandom());
     // alert(this.word());
@@ -136,8 +137,10 @@ export class Ahorcado {
       palabra: this.palabra(),
       resultado: this.win() ? 'ganada' : 'perdida',
       errores: this.errores(),
-      duracion: Date.now() - this.tiempoInicio,
+      duracion: Date.now() - this.tiempoInicio(),
       letras_seleccionadas: this.letrasSeleccionadas().length
     });
+
+    // alert(`tiempo jugado ${(Date.now() - this.tiempoInicio())/1000}`);
   }
 }
