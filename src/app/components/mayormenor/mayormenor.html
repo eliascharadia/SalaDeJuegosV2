@@ -1,0 +1,65 @@
+<div class="game-container">
+
+  <h1>🃏 Mayor o Menor</h1>
+
+  <div class="card-container">
+
+    <div class="playing-card">
+
+      <span>{{ cartaActual()?.palo }}</span>
+
+      <small>{{ cartaActual()?.simbolo }}</small>
+
+    </div>
+
+  </div>
+
+  <p class="score">
+    ⭐ Puntaje: {{ puntaje() }}
+  </p>
+
+  @if (!juegoFinalizado()) {
+
+    <div class="buttons">
+
+      <button
+        class="btn-higher"
+        (click)="adivinarLaMayor()"
+      >
+        📈 Mayor
+      </button>
+
+      <button
+        class="btn-lower"
+        (click)="adivinarLaMenor()"
+      >
+        📉 Menor
+      </button>
+
+    </div>
+
+  }
+
+  @if (juegoFinalizado()) {
+
+    <div class="game-over">
+
+      <h2>💀 Game Over</h2>
+
+      <p>
+        Puntaje final:
+        {{ puntaje() }}
+      </p>
+
+      <button
+        class="btn-restart"
+        (click)="iniciarPartida()"
+      >
+        🔄 Reintentar
+      </button>
+
+    </div>
+
+  }
+
+</div>
