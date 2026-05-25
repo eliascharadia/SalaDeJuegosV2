@@ -27,6 +27,8 @@ export class Ahorcado {
 
   tiempoInicio = signal<number>(0);
 
+  tiempoPartida = signal<number>(0);
+
   gameOver = signal(false);
 
   win = signal(false);
@@ -34,7 +36,7 @@ export class Ahorcado {
   ngOnInit() {
 
     this.letras.set(
-      'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('')
+      'ABCDEFGHIJKLMNÑOPQRSTUVWXYZ'.split('')
     );
 
     this.startGame();
@@ -49,6 +51,8 @@ export class Ahorcado {
     const hidden = Array(
       this.palabra().length
     ).fill('_');
+
+    this.tiempoPartida.set(0);
 
     this.palabraOculta.set(hidden);
 
@@ -129,6 +133,7 @@ export class Ahorcado {
   async registrarResultados() {
 
     const user = this.auth.user();
+    const duracion = Date.now() - this.tiempoInicio()
 
     if (!user) return;
 
@@ -137,9 +142,11 @@ export class Ahorcado {
       palabra: this.palabra(),
       resultado: this.win() ? 'ganada' : 'perdida',
       errores: this.errores(),
-      duracion: Date.now() - this.tiempoInicio(),
+      duracion: duracion,
       letras_seleccionadas: this.letrasSeleccionadas().length
     });
+
+    this.tiempoPartida.set(duracion);
 
     // alert(`tiempo jugado ${(Date.now() - this.tiempoInicio())/1000}`);
   }
