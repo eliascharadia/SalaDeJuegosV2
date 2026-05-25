@@ -1,125 +1,143 @@
-<div class="hangman-container">
+<div class="contenedor-principal">
+  <div class="hangman-container">
 
-  <h1>🧠 Ahorcado</h1>
-  <h2>Cantidad de letras seleccionadas: {{ letrasSeleccionadas().length }}</h2>
+    <h1>🧠 Ahorcado</h1>
 
-  <div class="hangman-drawing">
+    <div class="hangman-drawing">
 
-  <svg height="250" width="200">
+    <svg height="250" width="200">
 
-    <!-- base -->
-    <line x1="20" y1="230" x2="120" y2="230" class="hang-line"/>
+      <!-- base -->
+      <line x1="20" y1="230" x2="120" y2="230" class="hang-line"/>
 
-    <!-- poste -->
-    <line x1="70" y1="230" x2="70" y2="20" class="hang-line"/>
+      <!-- poste -->
+      <line x1="70" y1="230" x2="70" y2="20" class="hang-line"/>
 
-    <!-- techo -->
-    <line x1="70" y1="20" x2="150" y2="20" class="hang-line"/>
+      <!-- techo -->
+      <line x1="70" y1="20" x2="150" y2="20" class="hang-line"/>
 
-    <!-- cuerda -->
-    <line x1="150" y1="20" x2="150" y2="50" class="hang-line"/>
+      <!-- cuerda -->
+      <line x1="150" y1="20" x2="150" y2="50" class="hang-line"/>
 
-    <!-- cabeza -->
-    @if (errores() >= 1) {
-      <circle cx="150" cy="70" r="20" class="hang-part"/>
-    }
+      <!-- cabeza -->
+      @if (errores() >= 1) {
+        <circle cx="150" cy="70" r="20" class="hang-part"/>
+      }
 
-    <!-- cuerpo -->
-    @if (errores() >= 2) {
-      <line x1="150" y1="90" x2="150" y2="150" class="hang-part"/>
-    }
+      <!-- cuerpo -->
+      @if (errores() >= 2) {
+        <line x1="150" y1="90" x2="150" y2="150" class="hang-part"/>
+      }
 
-    <!-- brazo izquierdo -->
-    @if (errores() >= 3) {
-      <line x1="150" y1="110" x2="120" y2="130" class="hang-part"/>
-    }
+      <!-- brazo izquierdo -->
+      @if (errores() >= 3) {
+        <line x1="150" y1="110" x2="120" y2="130" class="hang-part"/>
+      }
 
-    <!-- brazo derecho -->
-    @if (errores() >= 4) {
-      <line x1="150" y1="110" x2="180" y2="130" class="hang-part"/>
-    }
+      <!-- brazo derecho -->
+      @if (errores() >= 4) {
+        <line x1="150" y1="110" x2="180" y2="130" class="hang-part"/>
+      }
 
-    <!-- pierna izquierda -->
-    @if (errores() >= 5) {
-      <line x1="150" y1="150" x2="120" y2="190" class="hang-part"/>
-    }
+      <!-- pierna izquierda -->
+      @if (errores() >= 5) {
+        <line x1="150" y1="150" x2="120" y2="190" class="hang-part"/>
+      }
 
-    <!-- pierna derecha -->
-    @if (errores() >= 6) {
-      <line x1="150" y1="150" x2="180" y2="190" class="hang-part"/>
-    }
+      <!-- pierna derecha -->
+      @if (errores() >= 6) {
+        <line x1="150" y1="150" x2="180" y2="190" class="hang-part"/>
+      }
 
-  </svg>
-
-</div>
-
-  <!-- palabra -->
-  <div class="word">
-
-    @for (letter of palabraOculta(); track $index) {
-
-      <span class="letter-box">
-        {{ letter }}
-      </span>
-
-    }
+    </svg>
 
   </div>
 
-  <!-- errores -->
-  <p>
-    ❌ Errores:
-    {{ errores() }} / {{ maxerrores }}
-  </p>
+    <!-- palabra -->
+    <div class="word">
 
-  <!-- letras -->
-  <div class="letters-container">
+      @for (letter of palabraOculta(); track $index) {
 
-    @for (letra of letras(); track letra) {
-
-      <button
-        class="btn-letter"
-        (click)="letraSeleccionada(letra)"
-        [disabled]="letrasSeleccionadas().includes(letra) || gameOver()"
-      >
-        {{ letra }}
-      </button>
-
-    }
-
-  </div>
-
-  <!-- win lose -->
-  @if (gameOver()) {
-
-    <div class="result">
-
-      @if (win()) {
-
-        <h2>🎉 Ganaste</h2>
-
-      } @else {
-
-        <h2>💀 Perdiste</h2>
-
-        <p>
-          La palabra era:
-          {{ palabra() }}
-        </p>
+        <span class="letter-box">
+          {{ letter }}
+        </span>
 
       }
 
-      <button
-        class="btn btn-gamer"
-        (click)="startGame()"
-      >
-        🔄 Reintentar
-      </button>
+    </div>
+
+    <!-- errores -->
+    <p>
+      ❌ Errores:
+      {{ errores() }} / {{ maxerrores }}
+    </p>
+
+    <!-- letras -->
+    <div class="letters-container">
+
+      @for (letra of letras(); track letra) {
+
+        <button
+          class="btn-letter"
+          (click)="letraSeleccionada(letra)"
+          [disabled]="letrasSeleccionadas().includes(letra) || gameOver()"
+        >
+          {{ letra }}
+        </button>
+
+      }
 
     </div>
 
-  }
+    <!-- win lose -->
+    @if (gameOver()) {
 
-</div>
+      
+      <div class="result">
+
+        <div class="estadistica-card">
+          <div class="card-glow"></div>
+  
+          <span class="estadistica-icon">⏱</span>
+  
+          <p class="estadistica-label">Mejor tiempo</p>
+  
+          <h3 class="estadistica-value">
+            @if(tiempoPartida()/1000 <= 60){
+              Haz tardado: {{ (tiempoPartida()/1000).toFixed(2) }} segundos
+            }@else{
+              Haz tardado: {{ ((tiempoPartida()/1000)/60).toFixed(1) }} minutos
+            }
+            
+          </h3>
+        </div>
+
+        @if (win()) {
+
+          <h2>🎉 Ganaste</h2>
+
+        } @else {
+
+          <h2>💀 Perdiste</h2>
+
+          <p>
+            La palabra era:
+            {{ palabra() }}
+          </p>
+
+        }
+
+        <button
+          class="btn btn-gamer"
+          (click)="startGame()"
+        >
+          🔄 Reintentar
+        </button>
+
+      </div>
+
+    }
+
+  </div>
 
 
