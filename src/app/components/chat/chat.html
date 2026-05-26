@@ -2,7 +2,7 @@
 
   <div class="chat-container container">
 
-    <div class="messages-list">
+    <div class="messages-list" #scrollContainer (scroll)="detectarScroll()">
     
       @for (msg of chatService.mensajes(); track msg.id) {
         

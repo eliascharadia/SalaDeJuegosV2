@@ -4,13 +4,32 @@
 
   <div class="card-container">
 
-    <div class="playing-card">
+    <div class="carta-actual">
+      <h3>Actual</h3>
+      <div class="playing-card">
 
-      <span>{{ cartaActual()?.palo }}</span>
+        <span>{{ cartaActual()?.palo }}</span>
 
-      <small>{{ cartaActual()?.simbolo }}</small>
+        <small>{{ cartaActual()?.simbolo }}</small>
 
+      </div>
     </div>
+
+    
+    @if (cartaQuePerdio() !== null) {
+      <div class="arrow">
+        ➜
+      </div>
+      
+      <div class="lost-card">
+        <h3>💀 Era...</h3>
+        <div class="playing-card">
+          <span>{{ cartaQuePerdio()?.palo }}</span>
+          <small>{{ cartaQuePerdio()?.simbolo }}</small>
+        </div>
+      </div>
+    
+    }
 
   </div>
 

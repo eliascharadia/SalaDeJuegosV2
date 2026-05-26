@@ -31,14 +31,13 @@ export class SimondiceService {
     return true;
   }
 
-  async getResultados(userId: string) {
+  async getResultados() {
 
     const { data, error } = await this.supabase.getClient()
       .from('partidas_simondice')
-      .select('*')
-      .eq('usuario_id', userId);
+      .select('usuario_id, record, usuarios(nombre)')
 
-    console.log(data)
+    console.log(data);
     if (error) {
       console.log(error);
       return;
