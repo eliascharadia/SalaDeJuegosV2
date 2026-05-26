@@ -18,6 +18,8 @@ export class PreguntadosService {
   error = signal('');
   loading = signal(false);
 
+  datos = signal<any[]>([]);
+
   obtenerPreguntas(): void {
     this.loading.set(true);
 
@@ -54,6 +56,22 @@ export class PreguntadosService {
     }
 
     return true;
+  }
+
+  async getResultados(userId: string) {
+
+    const { data, error } = await this.supabase.getClient()
+      .from('partidas_preguntados')
+      .select('*')
+      .eq('usuario_id', userId);
+
+    console.log(data)
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    this.datos.set(data ?? []);
   }
 
 }

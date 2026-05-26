@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { SupabaseService } from './supabase';
 import { Auth } from './auth';
 
@@ -8,6 +8,8 @@ import { Auth } from './auth';
 export class SimondiceService {
   private supabase = inject(SupabaseService);
   private auth = inject(Auth);
+
+  datos = signal<any[]>([]);
 
   async guardarPatida(record: number){
     const user = this.auth.user();
@@ -28,4 +30,21 @@ export class SimondiceService {
 
     return true;
   }
+
+  async getResultados(userId: string) {
+
+    const { data, error } = await this.supabase.getClient()
+      .from('partidas_simondice')
+      .select('*')
+      .eq('usuario_id', userId);
+
+    console.log(data)
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    this.datos.set(data ?? []);
+  }
+
 }

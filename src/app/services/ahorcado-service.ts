@@ -14,6 +14,8 @@ export class AhorcadoService {
   loading = signal(false);
   error   = signal<string | null>(null);
 
+  datos = signal<any[]>([]);
+
   obtenerLetraRandom(): void {
     const palabraRandom =
     PALABRAS[Math.floor(Math.random() * PALABRAS.length)]
@@ -39,5 +41,21 @@ export class AhorcadoService {
     }
 
     return true;
+}
+
+async getResultados(userId: string) {
+
+  const { data, error } = await this.supabase.getClient()
+    .from('ahorcadoPartidas')
+    .select('*')
+    .eq('usuario_id', userId);
+
+    console.log(data)
+  if (error) {
+    console.log(error);
+    return;
+  }
+
+  this.datos.set(data ?? []);
 }
 }

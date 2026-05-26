@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { SupabaseService } from './supabase';
 
 @Injectable({
@@ -6,7 +6,7 @@ import { SupabaseService } from './supabase';
 })
 export class Mayormenorservice {
   private supabase = inject(SupabaseService);
-
+  datos = signal<any[]>([]);
 
   async guardarPartida(data: any) {
 
@@ -23,6 +23,22 @@ export class Mayormenorservice {
     }
 
     return true;
+  }
+
+  async getResultados(userId: string) {
+
+    const { data, error } = await this.supabase.getClient()
+      .from('partidas_mayor_menor')
+      .select('*')
+      .eq('usuario_id', userId);
+
+    console.log(data)
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    this.datos.set(data ?? []);
   }
 
 }
