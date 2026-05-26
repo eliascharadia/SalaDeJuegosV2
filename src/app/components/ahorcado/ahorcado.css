@@ -1,0 +1,352 @@
+/* CONTENEDOR GENERAL */
+.hangman-container {
+
+  min-height: 100vh;
+
+  padding: 40px 20px;
+
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background:
+    radial-gradient(circle at top,
+      #18243f,
+      #0b0f1a 60%);
+
+  animation: fadeIn 0.5s ease;
+}
+
+
+/* TITULO */
+.hangman-container h1 {
+
+  font-size: 3rem;
+
+  margin-bottom: 20px;
+
+  font-weight: bold;
+
+  letter-spacing: 2px;
+
+  text-shadow:
+    0 0 10px rgba(0,191,255,0.7),
+    0 0 20px rgba(0,191,255,0.5);
+}
+
+
+/* DIBUJO */
+.hangman-drawing {
+
+  margin-bottom: 30px;
+
+  padding: 20px;
+
+  border-radius: 20px;
+
+  background:
+    rgba(255,255,255,0.03);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(8px);
+
+  box-shadow:
+    0 0 20px rgba(0,191,255,0.08);
+}
+
+
+/* LINEAS DEL AHORCADO */
+.hang-line {
+
+  stroke: rgba(255,255,255,0.4);
+
+  stroke-width: 4;
+}
+
+
+/* PARTES DEL CUERPO */
+.hang-part {
+
+  stroke: #00bfff;
+
+  stroke-width: 4;
+
+  fill: transparent;
+
+  animation: drawPart 0.2s ease;
+
+  filter:
+    drop-shadow(0 0 6px rgba(0,191,255,0.8));
+}
+
+
+/* PALABRA */
+.word {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin: 30px 0;
+}
+
+
+/* LETRAS */
+.letter-box {
+
+  width: 55px;
+  height: 65px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 2rem;
+
+  font-weight: bold;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255,255,255,0.05);
+
+  border:
+    1px solid rgba(0,191,255,0.3);
+
+  backdrop-filter: blur(5px);
+
+  box-shadow:
+    0 0 12px rgba(0,191,255,0.1);
+
+  text-shadow:
+    0 0 10px rgba(0,191,255,0.6);
+}
+
+
+/* TEXTO ERRORES */
+.hangman-container p {
+
+  font-size: 1.1rem;
+
+  color: rgba(255,255,255,0.8);
+}
+
+
+/* CONTENEDOR LETRAS */
+.letters-container {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 10px;
+
+  max-width: 700px;
+
+  margin-top: 25px;
+}
+
+
+/* BOTONES LETRAS */
+.btn-letter {
+
+  width: 50px;
+  height: 50px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  color: white;
+
+  font-weight: bold;
+
+  font-size: 1rem;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+
+  border:
+    1px solid rgba(0,191,255,0.2);
+
+  backdrop-filter: blur(5px);
+
+  cursor: pointer;
+}
+
+
+/* HOVER */
+.btn-letter:hover:not(:disabled) {
+
+  transform:
+    translateY(-3px)
+    scale(1.05);
+
+  background:
+    rgba(0,191,255,0.15);
+
+  box-shadow:
+    0 0 15px rgba(0,191,255,0.4);
+}
+
+
+/* DESHABILITADO */
+.btn-letter:disabled {
+
+  opacity: 0.35;
+
+  cursor: not-allowed;
+
+  transform: scale(0.95);
+}
+
+
+/* RESULTADO */
+.result {
+
+  margin-top: 35px;
+
+  padding: 25px;
+
+  border-radius: 18px;
+
+  background:
+    rgba(255,255,255,0.04);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(8px);
+
+  text-align: center;
+
+  animation: fadeUp 0.3s ease;
+}
+
+
+/* GANASTE */
+.result h2 {
+
+  font-size: 2rem;
+
+  margin-bottom: 15px;
+
+  text-shadow:
+    0 0 15px rgba(0,191,255,0.7);
+}
+
+
+/* BOTON REINTENTAR */
+.btn-gamer {
+
+  padding: 12px 22px;
+
+  border: none;
+
+  border-radius: 12px;
+
+  background:
+    linear-gradient(135deg,
+      #00bfff,
+      #0077ff);
+
+  color: white;
+
+  font-weight: bold;
+
+  transition: 0.25s ease;
+
+  box-shadow:
+    0 0 15px rgba(0,191,255,0.4);
+}
+
+
+.btn-gamer:hover {
+
+  transform:
+    translateY(-3px)
+    scale(1.03);
+
+  box-shadow:
+    0 0 20px rgba(0,191,255,0.7);
+}
+
+
+/* ANIMACIONES */
+@keyframes fadeIn {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes fadeUp {
+
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+@keyframes drawPart {
+
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+
+  .hangman-container h1 {
+    font-size: 2.2rem;
+  }
+
+  .letter-box {
+
+    width: 45px;
+    height: 55px;
+
+    font-size: 1.5rem;
+  }
+
+  .btn-letter {
+
+    width: 42px;
+    height: 42px;
+  }
+
+}
