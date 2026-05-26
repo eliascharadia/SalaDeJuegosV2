@@ -25,6 +25,8 @@ export class Simondice {
 
   colorActivo = signal<string | null>(null);
 
+  secuenciaCompletadaExitosamente = signal(false);
+
  ngOnInit() {
     this.empezarPartida()
   }
@@ -109,6 +111,11 @@ export class Simondice {
     }
 
     if (this.secuenciaDelUsuario().length === this.secuencia().length) {
+      this.secuenciaCompletadaExitosamente.set(true);
+
+      setTimeout(() => {
+        this.secuenciaCompletadaExitosamente.set(false);
+      }, 700);
 
       setTimeout(() => this.sigueinteSecuencia(), 800);
     }
