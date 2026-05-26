@@ -1,0 +1,81 @@
+<div class="game-container">
+    @if (preguntadosService.loading()) {
+    <div class="d-flex justify-content-center align-items-center loading-container">
+
+        <div class="loading-card text-center p-4">
+
+        <div class="spinner-border text-info mb-3" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+
+        <p class="loading-text mb-0">
+            🎮 Cargando preguntas...
+        </p>
+
+        </div>
+
+    </div>
+    }@else{
+    @if(!partidaFinalizada()) {
+
+    <div class="container quiz-container text-center">
+
+        <div class="card quiz-card mx-auto">
+
+            <div class="card-body">
+
+
+                @if (preguntas().length > 0 && preguntas()[currentIndex()]) {
+
+                <h2 class="question mb-4" [innerHTML]="preguntas()[currentIndex()].question">
+                </h2>
+
+                }
+
+                <div class="d-grid gap-3">
+
+                    @for (a of traerRespuestas(preguntas()[currentIndex()]); track a) {
+
+                    <button class="btn btn-quiz" (click)="responder(a)">
+                        {{ a }}
+                    </button>
+
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    }
+
+    @if(partidaFinalizada()) {
+
+    <div class="container text-center quiz-end">
+
+        <div class="card quiz-card mx-auto">
+
+            <div class="card-body">
+
+                <h2>🎉 Juego terminado</h2>
+
+                <p class="score">
+                    Puntaje: {{ puntaje() }}
+                </p>
+
+                <button class="btn btn-retry" (click)="empezarPartida()">
+                    🔄 Reintentar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    }
+    }
+</div>
