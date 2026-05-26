@@ -329,6 +329,14 @@
       scale(1);
   }
 }
+.messages-list {
+
+  max-height: 400px;
+
+  overflow-y: auto;
+
+  scroll-behavior: smooth;
+}
 
 
 /* RESPONSIVE */
@@ -343,7 +351,11 @@
 
   .messages-list {
 
-    height: 350px;
+     max-height: 400px;
+
+  overflow-y: auto;
+
+  scroll-behavior: smooth;
   }
 
   .input-area {
