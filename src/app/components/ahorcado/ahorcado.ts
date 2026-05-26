@@ -65,23 +65,23 @@ export class Ahorcado {
     this.win.set(false);
   }
 
-  letraSeleccionada(letter: string) {
+  letraSeleccionada(letra: string) {
 
     if (this.gameOver()) return;
 
     // evitar repetir letras
-    if (this.letrasSeleccionadas().includes(letter)) {
+    if (this.letrasSeleccionadas().includes(letra)) {
       return;
     }
 
     this.letrasSeleccionadas.update(prev => [
       ...prev,
-      letter
+      letra
     ]);
 
-    if (this.palabra().includes(letter)) {
+    if (this.palabra().includes(letra)) {
 
-      this.revelarLetra(letter);
+      this.revelarLetra(letra);
 
     } else {
 
