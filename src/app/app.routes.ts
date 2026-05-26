@@ -6,6 +6,7 @@ import { BienvenidaHome } from './components/bienvenida-home/bienvenida-home';
 import { Ahorcado } from './components/ahorcado/ahorcado';
 import { authGuard } from  './guards/auth'
 import { Mayormenor } from './components/mayormenor/mayormenor';
+import { Chat } from './components/chat/chat';
 
 export const routes: Routes = [
     { path: '', component: BienvenidaHome },
@@ -17,6 +18,7 @@ export const routes: Routes = [
     },
     {path: 'ahorcado', component: Ahorcado, canActivate: [authGuard]},
     {path: 'mayormenor', component: Mayormenor, canActivate: [authGuard]},
+    {path: 'chat', component: Chat, canActivate: [authGuard]},
     { path: 'login', component: Login },
     { path: 'register', component: Registro },
     { path: 'quiensoy', component: QuienSoy },
