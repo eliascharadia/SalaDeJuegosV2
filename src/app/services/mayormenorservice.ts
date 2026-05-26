@@ -25,14 +25,13 @@ export class Mayormenorservice {
     return true;
   }
 
-  async getResultados(userId: string) {
+  async getResultados() {
 
     const { data, error } = await this.supabase.getClient()
       .from('partidas_mayor_menor')
-      .select('*')
-      .eq('usuario_id', userId);
+      .select('usuario_id, puntaje, usuarios(nombre)')
 
-    console.log(data)
+    // console.log(data)
     if (error) {
       console.log(error);
       return;

@@ -20,98 +20,131 @@ export class Listado {
   private preguntadosService = inject(PreguntadosService);
   private simondiceService = inject(SimondiceService);
 
-// Estadisticas de ahorcado
-  partidasGanadas = computed(() => {
-
-    return this.ahorcado()
-      .filter(partida => partida.resultado === 'ganada')
-      .length;
-
-  });
-
-  partidasPerdidas = computed(() => {
-
-  return this.ahorcado()
-    .filter(partida => partida.resultado === 'perdida')
-    .length;
-
-});
-
-
-  mejorTiempoAhorcado = computed(() => {
-
-    if (this.ahorcado().length === 0) return 0;
-
-    return Math.min(
-      ...this.ahorcado().map(d => d.duracion)
-    );
-
-  });
-
-
-// Estadisticas de mayor o menor
-  mejorRacha = computed(() => {
-
-    if (this.mayorMenor().length === 0) return 0;
-
-    return Math.max(
-      ...this.mayorMenor().map(p => p.puntaje)
-    );
-
-  });
-
-  // Estadisticas de preguntados
-
-  mayorCantidadDeResuestas = computed(() => {
-
-    if (this.preguntados().length === 0) return 0;
-
-    return Math.max(
-      ...this.preguntados().map(p => p.puntaje)
-    );
-
-  });
-
-// Estadisticas de simon dice
-  secuenciaMaxima = computed(() => {
-
-    if (this.simonDice().length === 0) return 0;
-
-    return Math.max(
-      ...this.simonDice().map(p => p.record)
-    );
-
-  });
-
-
-  private auth = inject(Auth);
-
-  nombreUsuario = this.auth.user()?.nombre;
 
   ahorcado = signal<any[]>([]);
   mayorMenor = signal<any[]>([]);
   preguntados = signal<any[]>([]);
   simonDice = signal<any[]>([]);
 
+
   constructor() {
     effect(() => {
-      this.ahorcado.set(this.ahrocadoService.datos());
-      this.mayorMenor.set(this.mayorMenorService.datos());
-      this.preguntados.set(this.preguntadosService.datos());
-      this.simonDice.set(this.simondiceService.datos());
+      this.hacerRankingAhrocado();
+      console.log(this.ahorcado())
+      this.hacerRankingMayoromenor();
+      this.hacerRankingPreguntados();
+      this.hacerRankingSimondice();
     })
   }
 
 
   ngOnInit() {
+    this.ahrocadoService.getResultados();
+    this.mayorMenorService.getResultados();
+    this.preguntadosService.getResultados();
+    this.simondiceService.getResultados();
+  }
 
-    const userId = this.auth.user()?.id;
+  hacerRankingAhrocado() {
+    const ranking = new Map<string, number>();
 
-    if (!userId) return;
-    this.ahrocadoService.getResultados(userId);
-    this.mayorMenorService.getResultados(userId);
-    this.preguntadosService.getResultados(userId);
-    this.simondiceService.getResultados(userId);
+    this.ahrocadoService.datos().forEach(d => {
+
+      const nombre = d.usuarios?.nombre ?? 'Desconocido';
+
+      const actual = ranking.get(nombre);
+
+      if (actual === undefined || d.duracion < actual) {
+        ranking.set(nombre, d.duracion);
+      }
+
+    });
+
+    const top5 = Array.from(ranking.entries())
+      .sort((a, b) => a[1] - b[1]) // MENOR a MAYOR
+      .slice(0, 5)
+      .map(([nombre, duracion]) => ({
+        nombre,
+        duracion
+      }));
+
+    this.ahorcado.set(top5);
+
+  }
+
+
+  hacerRankingMayoromenor() {
+    const ranking = new Map<string, number>();
+
+    this.mayorMenorService.datos().forEach(p => {
+
+      const nombre = p.usuarios?.nombre ?? 'Desconocido';
+
+      const actual = ranking.get(nombre) ?? 0;
+
+      ranking.set(nombre, actual + p.puntaje);
+
+    });
+
+    const top5 = Array.from(ranking.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5)
+      .map(([nombre, puntaje]) => ({
+        nombre,
+        puntaje
+      }));
+
+    this.mayorMenor.set(top5);
+
+  }
+
+  hacerRankingPreguntados() {
+    const ranking = new Map<string, number>();
+
+    this.preguntadosService.datos().forEach(p => {
+
+      const nombre = p.usuarios?.nombre ?? 'Desconocido';
+
+      const actual = ranking.get(nombre) ?? 0;
+
+      ranking.set(nombre, actual + p.puntaje);
+
+    });
+
+    const top5 = Array.from(ranking.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5)
+      .map(([nombre, puntaje]) => ({
+        nombre,
+        puntaje
+      }));
+
+    this.preguntados.set(top5);
+
+  }
+
+  hacerRankingSimondice() {
+    const ranking = new Map<string, number>();
+
+    this.simondiceService.datos().forEach(p => {
+
+      const nombre = p.usuarios?.nombre ?? 'Desconocido';
+
+      const actual = ranking.get(nombre) ?? 0;
+
+      ranking.set(nombre, actual + p.record);
+
+    });
+
+    const top5 = Array.from(ranking.entries())
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5)
+      .map(([nombre, record]) => ({
+        nombre,
+        record
+      }));
+
+    this.simonDice.set(top5);
 
   }
 

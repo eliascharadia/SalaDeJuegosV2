@@ -1,116 +1,229 @@
 <div class="game-container">
 
-<div class="container py-4">
+  <div class="container py-4">
 
-  <h2 class="text-center text-light mb-5">
-    🎮 Mis Estadisticas: {{nombreUsuario}}
-  </h2>
+    <h2 class="text-center text-light mb-5">
+      🎮 RANKING
+    </h2>
 
-  <div class="row g-4">
+    <div class="container mt-4">
 
-    <!-- AHORCADO -->
-    <div class="col-12 col-md-6 col-xl-3">
+      <h2 class="ranking-title">🏆 Ranking Ahorcado</h2>
 
-      <div class="steam-card ahorcado-card">
+      <div class="table-responsive ranking-wrapper">
 
-        <div class="game-icon">🧠</div>
+        <table class="table table-dark table-hover ranking-table text-center align-middle">
 
-        <h4>Ahorcado</h4>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Jugador</th>
+              <th>Mejor tiempo</th>
+            </tr>
+          </thead>
 
-        <div class="stat">
-          🎯 Partidas:
-          <strong>{{ ahorcado().length }}</strong>
-        </div>
+          <tbody>
 
-        <div class="stat">
-          ⏱ Mejor Tiempo:
-          <strong>{{ (mejorTiempoAhorcado()/1000).toFixed(2) }}seg</strong>
-        </div>
+            @for (user of ahorcado(); track user[0]; let i = $index) {
 
-        <div class="stat">
-            ✅ Ganadas:
-            <strong>{{ partidasGanadas() }}</strong>
-        </div>
-        
-        <div class="stat">
-            ❌ Perdidas:
-            <strong>{{ partidasPerdidas() }}</strong>
-        </div>
+            <tr class="ranking-row">
+
+              <td class="rank-position">
+                @if (i === 0) {
+                <span class="medal gold">🥇</span>
+                } @else if (i === 1) {
+                <span class="medal silver">🥈</span>
+                } @else if (i === 2) {
+                <span class="medal bronze">🥉</span>
+                } @else {
+                {{ i + 1 }}
+                }
+              </td>
+
+              <td class="player-name">
+                {{ user.nombre }}
+              </td>
+
+              <td>
+                <span class="badge score-badge">
+                  @if(user.duracion/1000 <= 60){ {{ (user.duracion/1000).toFixed(2) }} segundos }@else{ {{
+                    ((user.duracion/1000)/60).toFixed(1) }} minutos } </span>
+              </td>
+
+            </tr>
+
+            }
+
+          </tbody>
+
+        </table>
 
       </div>
-
     </div>
 
-    <!-- MAYOR O MENOR -->
-    <div class="col-12 col-md-6 col-xl-3">
+    <div class="container mt-4">
 
-      <div class="steam-card mayor-card">
+      <h2 class="ranking-title">🏆 Ranking Mayor o menor</h2>
 
-        <div class="game-icon">🎯</div>
+      <div class="table-responsive ranking-wrapper">
 
-        <h4>Mayor o Menor</h4>
+        <table class="table table-dark table-hover ranking-table text-center align-middle">
 
-        <div class="stat">
-          🎮 Partidas:
-          <strong>{{ mayorMenor().length }}</strong>
-        </div>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Jugador</th>
+              <th>Puntaje</th>
+            </tr>
+          </thead>
 
-        <div class="stat">
-          🏆 Mejor Racha:
-          <strong>{{ mejorRacha() }}</strong>
-        </div>
+          <tbody>
+
+            @for (user of mayorMenor(); track user[0]; let i = $index) {
+
+            <tr class="ranking-row">
+
+              <td class="rank-position">
+                @if (i === 0) {
+                <span class="medal gold">🥇</span>
+                } @else if (i === 1) {
+                <span class="medal silver">🥈</span>
+                } @else if (i === 2) {
+                <span class="medal bronze">🥉</span>
+                } @else {
+                {{ i + 1 }}
+                }
+              </td>
+
+              <td class="player-name">
+                {{ user.nombre }}
+              </td>
+
+              <td>
+                <span class="badge score-badge">
+                  {{ user.puntaje }}
+                </span>
+              </td>
+
+            </tr>
+
+            }
+
+          </tbody>
+
+        </table>
 
       </div>
-
     </div>
 
-    <!-- PREGUNTADOS -->
-    <div class="col-12 col-md-6 col-xl-3">
+    <div class="container mt-4">
 
-      <div class="steam-card preguntados-card">
+      <h2 class="ranking-title">🏆 Ranking Preguntados</h2>
 
-        <div class="game-icon">❓</div>
+      <div class="table-responsive ranking-wrapper">
 
-        <h4>Preguntados</h4>
+        <table class="table table-dark table-hover ranking-table text-center align-middle">
 
-        <div class="stat">
-          🎮 Partidas:
-          <strong>{{ preguntados().length }}</strong>
-        </div>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Jugador</th>
+              <th>Puntaje</th>
+            </tr>
+          </thead>
 
-        <div class="stat">
-          🏆 Mejor Puntaje:
-          <strong>{{ mayorCantidadDeResuestas() }}</strong>
-        </div>
+          <tbody>
+
+            @for (user of preguntados(); track user[0]; let i = $index) {
+
+            <tr class="ranking-row">
+
+              <td class="rank-position">
+                @if (i === 0) {
+                <span class="medal gold">🥇</span>
+                } @else if (i === 1) {
+                <span class="medal silver">🥈</span>
+                } @else if (i === 2) {
+                <span class="medal bronze">🥉</span>
+                } @else {
+                {{ i + 1 }}
+                }
+              </td>
+
+              <td class="player-name">
+                {{ user.nombre }}
+              </td>
+
+              <td>
+                <span class="badge score-badge">
+                  {{ user.puntaje }}
+                </span>
+              </td>
+
+            </tr>
+
+            }
+
+          </tbody>
+
+        </table>
 
       </div>
-
     </div>
 
-    <!-- SIMON -->
-    <div class="col-12 col-md-6 col-xl-3">
+    <div class="container mt-4">
 
-      <div class="steam-card simon-card">
+      <h2 class="ranking-title">🏆 Ranking Simon dice</h2>
 
-        <div class="game-icon">🟢🔴🟡🔵</div>
+      <div class="table-responsive ranking-wrapper">
 
-        <h4>Simon Dice</h4>
+        <table class="table table-dark table-hover ranking-table text-center align-middle">
 
-        <div class="stat">
-          🎮 Partidas:
-          <strong>{{ simonDice().length }}</strong>
-        </div>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Jugador</th>
+              <th>Puntaje</th>
+            </tr>
+          </thead>
 
-        <div class="stat">
-          🏆 Secuencia Máxima:
-          <strong>{{ secuenciaMaxima() }}</strong>
-        </div>
+          <tbody>
+
+            @for (user of simonDice(); track user[0]; let i = $index) {
+
+            <tr class="ranking-row">
+
+              <td class="rank-position">
+                @if (i === 0) {
+                <span class="medal gold">🥇</span>
+                } @else if (i === 1) {
+                <span class="medal silver">🥈</span>
+                } @else if (i === 2) {
+                <span class="medal bronze">🥉</span>
+                } @else {
+                {{ i + 1 }}
+                }
+              </td>
+
+              <td class="player-name">
+                {{ user.nombre }}
+              </td>
+
+              <td>
+                <span class="badge score-badge">
+                  {{ user.record }}
+                </span>
+              </td>
+
+            </tr>
+
+            }
+
+          </tbody>
+
+        </table>
 
       </div>
-
     </div>
 
   </div>
-
-</div>
-</div>
