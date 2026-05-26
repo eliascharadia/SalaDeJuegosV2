@@ -8,6 +8,7 @@ import { authGuard } from  './guards/auth'
 import { Mayormenor } from './components/mayormenor/mayormenor';
 import { Chat } from './components/chat/chat';
 import { Preguntados } from './components/preguntados/preguntados';
+import { Simondice } from './components/simondice/simondice';
 
 export const routes: Routes = [
     { path: '', component: BienvenidaHome },
@@ -20,6 +21,7 @@ export const routes: Routes = [
     {path: 'ahorcado', component: Ahorcado, canActivate: [authGuard]},
     {path: 'mayormenor', component: Mayormenor, canActivate: [authGuard]},
     {path: 'preguntados', component: Preguntados, canActivate: [authGuard]},
+    {path: 'simondice', component: Simondice, canActivate: [authGuard]},
     {path: 'chat', component: Chat, canActivate: [authGuard]},
     { path: 'login', component: Login },
     { path: 'register', component: Registro },
