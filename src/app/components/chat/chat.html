@@ -1,0 +1,57 @@
+<div class="container-main">
+
+  <div class="chat-container container">
+
+    <div class="messages-list">
+    
+      @for (msg of chatService.mensajes(); track msg.id) {
+        
+      <!-- Esto lo que hace es: si se cumple la condicion, se aplica esa clase. -->
+      <div class="message-wrapper" [class.mi-mensaje]="msg.usuarios?.nombre === miNombreUsuario">
+    
+        <div class="message-item">
+    
+          @if (msg.usuarios?.nombre !== miNombreUsuario) {
+          
+          <span class="user-tag">
+            {{ msg.usuarios?.nombre }}
+          </span>
+          
+          }
+    
+          <span class="content">
+            {{ msg.contenido }}
+          </span>
+  
+          <span class="hora-mensaje">
+            {{ formatearHora(msg.created_at) }}
+          </span>
+        </div>
+    
+      </div>
+    
+      }
+    
+    </div>
+
+    <div class="input-area mt-3">
+
+      <input
+        [(ngModel)]="nuevoMensaje"
+        (keyup.enter)="enviar()"
+        placeholder="Escribe un mensaje..."
+        class="form-control"
+      />
+
+      <button
+        class="btn"
+        (click)="enviar()"
+        [disabled]="!miNombreUsuario?.trim()"
+      >
+        🚀 Enviar
+      </button>
+
+    </div>
+
+  </div>
+</div>
