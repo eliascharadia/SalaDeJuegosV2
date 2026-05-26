@@ -1,0 +1,66 @@
+<div class="game-container">
+    <div class="container py-4">
+
+        <div class="card simon-card mx-auto text-center">
+
+            <div class="card-body">
+
+                <!-- TITULO -->
+                <h1 class="game-title mb-3">
+                    🎮 Simon Dice
+                </h1>
+
+                <!-- NIVEL -->
+                <p class="level-text mb-4">
+                    Nivel: <span class="level-number">{{ nivel() }}</span>
+                </p>
+
+                <!-- GRID DE COLORES -->
+                <div class="colors-grid mx-auto mb-4">
+
+                    <button class="btn color rojo" [class.active]="colorActivo() === 'rojo'"
+                        (click)="seleccionarColor('rojo')"></button>
+
+                    <button class="btn color azul" [class.active]="colorActivo() === 'azul'"
+                        (click)="seleccionarColor('azul')"></button>
+
+                    <button class="btn color verde" [class.active]="colorActivo() === 'verde'"
+                        (click)="seleccionarColor('verde')"></button>
+
+                    <button class="btn color amarillo" [class.active]="colorActivo() === 'amarillo'"
+                        (click)="seleccionarColor('amarillo')"></button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    @if(partidaFinalizada()) {
+
+    <div class="container text-center quiz-end">
+
+        <div class="card quiz-card mx-auto">
+
+            <div class="card-body">
+
+                <h2>🎉 Juego terminado</h2>
+
+                <p class="score">
+                    Puntaje: {{ nivel() }}
+                </p>
+
+                <button class="btn btn-retry" (click)="empezarPartida()">
+                    🔄 Reintentar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    }
+</div>

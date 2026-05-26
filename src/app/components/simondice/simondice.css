@@ -1,0 +1,221 @@
+/* CONTENEDOR GENERAL */
+.game-container {
+
+  min-height: 100vh;
+
+  padding: 40px 20px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: white;
+
+  background:
+    radial-gradient(circle at top,
+      #18243f,
+      #0b0f1a 65%);
+
+  animation: fadeIn 0.5s ease;
+}
+
+.simon-card {
+
+  max-width: 450px;
+
+  border-radius: 22px;
+
+  background:
+    rgba(15,20,35,0.85);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 25px rgba(0,191,255,0.15);
+
+  color: white;
+}
+
+/* TITULO */
+.game-title {
+
+  font-weight: bold;
+
+  text-shadow:
+    0 0 10px rgba(0,191,255,0.5);
+}
+
+/* NIVEL */
+.level-text {
+
+  opacity: 0.9;
+}
+
+.level-number {
+
+  color: #00e5ff;
+
+  font-weight: bold;
+
+  text-shadow:
+    0 0 10px rgba(0,229,255,0.6);
+}
+
+/* GRID */
+.colors-grid {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 15px;
+
+  width: 240px;
+}
+
+/* BOTONES */
+.color {
+
+  width: 110px;
+
+  height: 110px;
+
+  border-radius: 18px;
+
+  border: none;
+
+  transition: all 0.2s ease;
+
+  opacity: 0.85;
+}
+
+/* COLORES NEON */
+.rojo {
+  background: #ff004c;
+  box-shadow: 0 0 15px #ff004c;
+}
+
+.azul {
+  background: #00e5ff;
+  box-shadow: 0 0 15px #00e5ff;
+}
+
+.verde {
+  background: #00ff85;
+  box-shadow: 0 0 15px #00ff85;
+}
+
+.amarillo {
+  background: #ffe600;
+  box-shadow: 0 0 15px #ffe600;
+}
+
+/* ACTIVO (FLASH SIMON) */
+.color.active {
+
+  transform: scale(1.15);
+
+  filter: brightness(1.4);
+
+  box-shadow:
+    0 0 20px white,
+    0 0 40px currentColor,
+    0 0 80px currentColor;
+}
+
+/* HOVER */
+.color:hover {
+
+  transform: scale(1.05);
+
+  opacity: 1;
+}
+
+.quiz-end {
+
+  /* min-height: 80vh; */
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 20px;
+}
+
+.quiz-card {
+
+  width: 100%;
+
+  max-width: 600px;
+
+  border-radius: 22px;
+
+  background:
+    rgba(15,20,35,0.85);
+
+  border:
+    1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(10px);
+
+  box-shadow:
+    0 0 25px rgba(0,191,255,0.12);
+
+  color: white;
+
+  animation: fadeUp 0.4s ease;
+}
+
+
+/* REINTENTAR */
+.btn-retry {
+
+  padding: 12px 22px;
+
+  border-radius: 14px;
+
+  border: none;
+
+  color: white;
+
+  font-weight: bold;
+
+  background:
+    linear-gradient(
+      135deg,
+      #00bfff,
+      #0077ff
+    );
+
+  box-shadow:
+    0 0 18px rgba(0,191,255,0.3);
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+/* RESPONSIVE */
+@media (max-width: 500px) {
+
+  .colors-grid {
+
+    width: 200px;
+  }
+
+  .color {
+
+    width: 90px;
+
+    height: 90px;
+  }
+}
