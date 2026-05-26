@@ -1,0 +1,116 @@
+<div class="game-container">
+
+<div class="container py-4">
+
+  <h2 class="text-center text-light mb-5">
+    🎮 Mis Estadisticas: {{nombreUsuario}}
+  </h2>
+
+  <div class="row g-4">
+
+    <!-- AHORCADO -->
+    <div class="col-12 col-md-6 col-xl-3">
+
+      <div class="steam-card ahorcado-card">
+
+        <div class="game-icon">🧠</div>
+
+        <h4>Ahorcado</h4>
+
+        <div class="stat">
+          🎯 Partidas:
+          <strong>{{ ahorcado().length }}</strong>
+        </div>
+
+        <div class="stat">
+          ⏱ Mejor Tiempo:
+          <strong>{{ (mejorTiempoAhorcado()/1000).toFixed(2) }}seg</strong>
+        </div>
+
+        <div class="stat">
+            ✅ Ganadas:
+            <strong>{{ partidasGanadas() }}</strong>
+        </div>
+        
+        <div class="stat">
+            ❌ Perdidas:
+            <strong>{{ partidasPerdidas() }}</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- MAYOR O MENOR -->
+    <div class="col-12 col-md-6 col-xl-3">
+
+      <div class="steam-card mayor-card">
+
+        <div class="game-icon">🎯</div>
+
+        <h4>Mayor o Menor</h4>
+
+        <div class="stat">
+          🎮 Partidas:
+          <strong>{{ mayorMenor().length }}</strong>
+        </div>
+
+        <div class="stat">
+          🏆 Mejor Racha:
+          <strong>{{ mejorRacha() }}</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- PREGUNTADOS -->
+    <div class="col-12 col-md-6 col-xl-3">
+
+      <div class="steam-card preguntados-card">
+
+        <div class="game-icon">❓</div>
+
+        <h4>Preguntados</h4>
+
+        <div class="stat">
+          🎮 Partidas:
+          <strong>{{ preguntados().length }}</strong>
+        </div>
+
+        <div class="stat">
+          🏆 Mejor Puntaje:
+          <strong>{{ mayorCantidadDeResuestas() }}</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- SIMON -->
+    <div class="col-12 col-md-6 col-xl-3">
+
+      <div class="steam-card simon-card">
+
+        <div class="game-icon">🟢🔴🟡🔵</div>
+
+        <h4>Simon Dice</h4>
+
+        <div class="stat">
+          🎮 Partidas:
+          <strong>{{ simonDice().length }}</strong>
+        </div>
+
+        <div class="stat">
+          🏆 Secuencia Máxima:
+          <strong>{{ secuenciaMaxima() }}</strong>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+</div>
