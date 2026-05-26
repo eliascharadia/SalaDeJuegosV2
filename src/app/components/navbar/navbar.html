@@ -61,7 +61,7 @@
     @if (auth.user()) {
       <span class="user-name">👤 Bienvenido {{ auth.user()?.nombre }}</span>
       <button class="btn btn-logout" (click)="auth.logout()">Cerrar sesión</button>
-      <a class="btn-link-gamer" routerLink="/chat">Chat Global</a>
+      <a class="btn-link-gamer" routerLink="/chat" data-bs-dismiss="offcanvas">Chat Global</a>
     } @else {
       <a class="btn-link-gamer" routerLink="/login" data-bs-dismiss="offcanvas">Iniciar Sesión</a>
       <a class="btn-link-gamer" routerLink="/register" data-bs-dismiss="offcanvas">Registrarse</a>
