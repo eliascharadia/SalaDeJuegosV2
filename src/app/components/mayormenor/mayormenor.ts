@@ -38,6 +38,8 @@ export class Mayormenor {
 
   juegoFinalizado = signal(false);
 
+  cartaQuePerdio = signal<Carta | null>(null);
+
 
   ngOnInit() {
     this.iniciarPartida();
@@ -49,6 +51,8 @@ export class Mayormenor {
 
     this.juegoFinalizado.set(false);
 
+    this.cartaQuePerdio.set(null);
+
     this.cartaActual.set(
       this.generarCartaRandom()
     );
@@ -56,10 +60,16 @@ export class Mayormenor {
 
   generarCartaRandom(): Carta {
 
-    return this.cards[
+  let nuevaCarta: Carta;
+
+  do {
+    nuevaCarta = this.cards[
       Math.floor(Math.random() * this.cards.length)
     ];
-  }
+  } while (nuevaCarta === this.cartaActual());
+
+  return nuevaCarta;
+}
 
   adivinarLaMayor() {
 
@@ -92,6 +102,7 @@ export class Mayormenor {
 
     } else {
 
+      this.cartaQuePerdio.set(cartaNueva);
       this.juegoFinalizado.set(true);
 
       this.guardarPartida();
