@@ -9,6 +9,7 @@ import { Mayormenor } from './components/mayormenor/mayormenor';
 import { Chat } from './components/chat/chat';
 import { Preguntados } from './components/preguntados/preguntados';
 import { Simondice } from './components/simondice/simondice';
+import { Listado } from './components/listado/listado';
 
 export const routes: Routes = [
     { path: '', component: BienvenidaHome },
@@ -23,6 +24,7 @@ export const routes: Routes = [
     {path: 'preguntados', component: Preguntados, canActivate: [authGuard]},
     {path: 'simondice', component: Simondice, canActivate: [authGuard]},
     {path: 'chat', component: Chat, canActivate: [authGuard]},
+    {path: 'listado', component: Listado, canActivate: [authGuard]},
     { path: 'login', component: Login },
     { path: 'register', component: Registro },
     { path: 'quiensoy', component: QuienSoy },
