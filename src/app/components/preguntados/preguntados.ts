@@ -21,6 +21,11 @@ export class Preguntados {
 
   respuestas = signal<string[]>([]);
 
+  acierto = signal<'correcto' | 'equivocado' | null>(null);
+  respuestaSeleccionada = signal<string | null>(null);
+
+  mostrarBarra = signal(false);
+
   constructor() {
 
     effect(() => {
@@ -63,23 +68,35 @@ export class Preguntados {
   }
 
   responder(respuestaElegida: string) {
-
+    
     const pregunta = this.preguntas()[this.currentIndex()];
 
-    if (respuestaElegida === pregunta.correct_answer) {
-      this.puntaje.update(p => p + 1);
-    }
+    const esCorrecta = respuestaElegida === pregunta.correct_answer;
 
-    if (this.currentIndex() + 1 >= this.preguntas().length) {
+    this.acierto.set(esCorrecta ? 'correcto' : 'equivocado');
 
-      this.partidaFinalizada.set(true);
+    this.mostrarBarra.set(true);
 
-      this.preguntadosService.guardarPartida(this.puntaje());
+    setTimeout(() =>{
+      if (esCorrecta) {
+        this.puntaje.update(p => p + 1);
+      }
+  
+      if (this.currentIndex() + 1 >= this.preguntas().length) {
+  
+        this.partidaFinalizada.set(true);
+  
+        this.preguntadosService.guardarPartida(this.puntaje());
+  
+      } else {
+  
+        this.currentIndex.update(i => i + 1);
+      }
 
-    } else {
-
-      this.currentIndex.update(i => i + 1);
-    }
+      this.acierto.set(null);
+      this.mostrarBarra.set(false);
+      
+    }, 3000);
   }
 
 

@@ -19,16 +19,49 @@
     @if(!partidaFinalizada()) {
 
     <div class="container quiz-container text-center">
-
+        
         <div class="card quiz-card mx-auto">
+            <h1 class="quiz-title mt-4">❓ Preguntados</h1>
 
             <div class="card-body">
 
 
                 @if (preguntas().length > 0 && preguntas()[currentIndex()]) {
 
+                <p class="texto-progreso mb-3">
+                    🧠 Pregunta {{ currentIndex() + 1 }} de {{ preguntas().length }}
+                </p>
+
+                @if (mostrarBarra()) {
+                
+                <div class="timer-wrapper">
+                
+                    <p class="timer-text">
+                        ⏳ Siguiente pregunta en...
+                    </p>
+                
+                    <div class="timer-container">
+                        <div class="timer-bar"></div>
+                    </div>
+                
+                </div>
+                
+                }
+
                 <h2 class="question mb-4" [innerHTML]="preguntas()[currentIndex()].question">
                 </h2>
+
+                @if (acierto() === 'correcto') {
+                    <div class="alert alert-success mt-3">
+                        ✅ Correcto!
+                    </div>
+                }
+                
+                @if (acierto() === 'equivocado') {
+                    <div class="alert alert-danger mt-3">
+                        ❌ Incorrecto. Respuesta correcta es: {{ preguntas()[this.currentIndex()].correct_answer}}
+                    </div>
+                }
 
                 }
 
