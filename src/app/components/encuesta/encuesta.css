@@ -1,0 +1,104 @@
+.main-container {
+  background: radial-gradient(circle at top, #0b0f1a, #05070d);
+}
+
+form {
+  max-width: 700px;
+  margin: auto;
+  padding: 30px;
+  border-radius: 16px;
+
+  background: linear-gradient(145deg, #0b0f1a, #111827);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  box-shadow: 0 0 25px rgba(0,0,0,0.6);
+  color: white;
+
+  animation: fadeIn 0.4s ease;
+}
+
+/* INPUTS */
+.gamer-input,
+.form-control {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(0,255,255,0.15);
+  color: white;
+
+  border-radius: 12px;
+  padding: 12px 14px;
+
+  transition: 0.2s ease;
+}
+
+.gamer-input:focus,
+.form-control:focus {
+  border-color: #00ffe1;
+  box-shadow: 0 0 12px rgba(0,255,225,0.4);
+  outline: none;
+}
+
+/* PLACEHOLDER */
+::placeholder {
+  color: rgba(255,255,255,0.4);
+}
+
+/* TITULOS DE PREGUNTA */
+.question-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+
+  color: #00ffe1;
+  text-shadow: 0 0 10px rgba(0,255,225,0.3);
+}
+
+/* CHECKBOX / RADIO */
+.form-check-input {
+  background-color: rgba(255,255,255,0.1);
+  border: 1px solid rgba(0,255,225,0.3);
+}
+
+.form-check-input:checked {
+  background-color: #00ffe1;
+  border-color: #00ffe1;
+}
+
+/* BOTON */
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+
+  border: none;
+  border-radius: 12px;
+
+  background: linear-gradient(90deg, #00ffe1, #00bcd4);
+  color: #0b0f1a;
+
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+
+  transition: 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 15px rgba(0,255,225,0.4);
+}
+
+/* ERROR */
+.text-danger {
+  color: #ff4d4d !important;
+  text-shadow: 0 0 8px rgba(255,0,0,0.4);
+}
+
+/* ANIMACION */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
