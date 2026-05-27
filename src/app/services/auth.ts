@@ -103,7 +103,8 @@ async login(email: string, password: string) {
     email: data.user.email ?? '',
     nombre: profile.nombre,
     apellido: profile.apellido,
-    edad: profile.edad
+    edad: profile.edad,
+    es_admin: profile.es_admin
   });
 
   this.router.navigate(['/']);
