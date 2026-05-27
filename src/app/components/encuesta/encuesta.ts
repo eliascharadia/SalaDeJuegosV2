@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { Auth } from '../../services/auth';
-import { SupabaseService } from '../../services/supabase';
+import { EncuestasService } from '../../services/encuestas-service';
 
 @Component({
   selector: 'app-encuesta',
@@ -12,7 +12,7 @@ import { SupabaseService } from '../../services/supabase';
 })
 export class Encuesta {
   private fb = inject(FormBuilder);
-  private supabase = inject(SupabaseService);
+  private encuestaService = inject(EncuestasService);
   private auth = inject(Auth);
 
 
@@ -54,34 +54,17 @@ export class Encuesta {
 
   async onSubmit() {
     this.loading.set(true);
-    const formValue = this.encuestaForm.value;
+    const valoresFormulario = this.encuestaForm.value;
     const usuarioId = this.auth.user()?.id;
   
     const juegos = [];
   
-    if (formValue.ahorcado) juegos.push('ahorcado');
-    if (formValue.mayorMenor) juegos.push('mayorMenor');
-    if (formValue.preguntados) juegos.push('preguntados');
-    if (formValue.simonDice) juegos.push('simonDice');
+    if (valoresFormulario.ahorcado) juegos.push('ahorcado');
+    if (valoresFormulario.mayorMenor) juegos.push('mayorMenor');
+    if (valoresFormulario.preguntados) juegos.push('preguntados');
+    if (valoresFormulario.simonDice) juegos.push('simonDice');
 
-    const { error } = await this.supabase.getClient()
-    .from('encuestas')
-    .insert({
-      usuario_id: usuarioId,
-      nombre: formValue.nombre,
-      apellido: formValue.apellido,
-      edad: formValue.edad,
-      numero: formValue.numero,
-      pregunta1: formValue.pregunta1,
-      juegos: juegos,
-      pregunta3: formValue.pregunta3
-    });
-
-    if (error) {
-      console.log(error);
-      alert('Error al guardar la encuesta');
-      return;
-    }
+    this.encuestaService.guardarResultados(usuarioId, valoresFormulario, juegos);
 
     this.encuestaForm.reset();
 
