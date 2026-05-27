@@ -27,10 +27,41 @@ export const routes: Routes = [
         component: Resultadosencuestas,
         canActivate: [adminGuard]
     },
-    {path: 'ahorcado', component: Ahorcado, canActivate: [authGuard]},
-    {path: 'mayormenor', component: Mayormenor, canActivate: [authGuard]},
-    {path: 'preguntados', component: Preguntados, canActivate: [authGuard]},
-    {path: 'simondice', component: Simondice, canActivate: [authGuard]},
+    {
+    path: 'ahorcado',
+    loadComponent: () =>
+      import('./components/ahorcado/ahorcado')
+        .then(m => m.Ahorcado),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'mayormenor',
+    loadComponent: () =>
+      import('./components/mayormenor/mayormenor')
+        .then(m => m.Mayormenor),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'preguntados',
+    loadComponent: () =>
+      import('./components/preguntados/preguntados')
+        .then(m => m.Preguntados),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'simondice',
+    loadComponent: () =>
+      import('./components/simondice/simondice')
+        .then(m => m.Simondice),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'simondice',
+    loadComponent: () =>
+      import('./components/simondice/simondice')
+        .then(m => m.Simondice),
+    canActivate: [authGuard]
+  },
     {path: 'chat', component: Chat, canActivate: [authGuard]},
     {path: 'encuesta', component: Encuesta, canActivate: [authGuard]},
     {path: 'listado', component: Listado, canActivate: [authGuard]},
