@@ -76,18 +76,20 @@ export class Listado {
   hacerRankingMayoromenor() {
     const ranking = new Map<string, number>();
 
-    this.mayorMenorService.datos().forEach(p => {
+    this.mayorMenorService.datos().forEach(d => {
 
-      const nombre = p.usuarios?.nombre ?? 'Desconocido';
+      const nombre = d.usuarios?.nombre ?? 'Desconocido';
 
-      const actual = ranking.get(nombre) ?? 0;
+      const actual = ranking.get(nombre);
 
-      ranking.set(nombre, actual + p.puntaje);
+      if (actual === undefined || d.puntaje > actual) {
+        ranking.set(nombre, d.puntaje);
+      }
 
     });
 
     const top5 = Array.from(ranking.entries())
-      .sort((a, b) => b[1] - a[1])
+      .sort((a, b) => b[1] - a[1]) 
       .slice(0, 5)
       .map(([nombre, puntaje]) => ({
         nombre,
@@ -101,13 +103,15 @@ export class Listado {
   hacerRankingPreguntados() {
     const ranking = new Map<string, number>();
 
-    this.preguntadosService.datos().forEach(p => {
+    this.preguntadosService.datos().forEach(d => {
 
-      const nombre = p.usuarios?.nombre ?? 'Desconocido';
+      const nombre = d.usuarios?.nombre ?? 'Desconocido';
 
-      const actual = ranking.get(nombre) ?? 0;
+      const actual = ranking.get(nombre);
 
-      ranking.set(nombre, actual + p.puntaje);
+      if (actual === undefined || d.puntaje > actual) {
+        ranking.set(nombre, d.puntaje);
+      }
 
     });
 
@@ -126,18 +130,20 @@ export class Listado {
   hacerRankingSimondice() {
     const ranking = new Map<string, number>();
 
-    this.simondiceService.datos().forEach(p => {
+    this.simondiceService.datos().forEach(d => {
 
-      const nombre = p.usuarios?.nombre ?? 'Desconocido';
+      const nombre = d.usuarios?.nombre ?? 'Desconocido';
 
-      const actual = ranking.get(nombre) ?? 0;
+      const actual = ranking.get(nombre);
 
-      ranking.set(nombre, actual + p.record);
+      if (actual === undefined || d.record > actual) {
+        ranking.set(nombre, d.record);
+      }
 
     });
 
     const top5 = Array.from(ranking.entries())
-      .sort((a, b) => b[1] - a[1])
+      .sort((a, b) => b[1] - a[1]) 
       .slice(0, 5)
       .map(([nombre, record]) => ({
         nombre,
