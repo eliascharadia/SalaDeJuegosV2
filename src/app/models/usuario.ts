@@ -12,4 +12,5 @@ export interface Usuario {
   apellido?: string;
   edad?: number;
   email: string;
+  es_admin?: boolean
 }

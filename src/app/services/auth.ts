@@ -35,7 +35,8 @@ export class Auth {
      this.user.set({
       id: session.user.id,
       email: session.user.email ?? '',
-      nombre: profile?.nombre
+      nombre: profile?.nombre,
+      es_admin: profile?.es_admin
     });
   }
 

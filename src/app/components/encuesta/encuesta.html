@@ -1,0 +1,191 @@
+<div class="main-container">
+<form [formGroup]="encuestaForm" (ngSubmit)="onSubmit()">
+
+      <!-- Nombre -->
+      <div class="mb-3">
+        <input type="text" class="form-control gamer-input"
+        placeholder="Nombre"
+        formControlName="nombre">
+
+        @if(encuestaForm.get('nombre')?.invalid && encuestaForm.get('nombre')?.touched){
+          <div class="text-danger small mt-1">
+              @if(encuestaForm.get('nombre')?.errors?.['required']){ El nombre es obligatorio }
+          </div>
+        }
+      </div>
+
+      <!-- Apellido -->
+      <div class="mb-3">
+        <input type="text" class="form-control gamer-input"
+        placeholder="Apellido"
+        formControlName="apellido">
+       @if(encuestaForm.get('apellido')?.invalid && encuestaForm.get('apellido')?.touched){
+          <div class="text-danger small mt-1">
+              @if(encuestaForm.get('apellido')?.errors?.['required']){ El apellido es obligatorio }
+          </div>
+        }
+      </div>
+
+      <!-- Edad -->
+      <div class="mb-3">
+        <input type="number"
+        formControlName="edad"
+        placeholder="Edad"
+        class="form-control gamer-input"
+        >
+
+        @if(encuestaForm.get('edad')?.invalid && encuestaForm.get('edad')?.touched){
+          <div class="text-danger small mt-1">
+              @if(encuestaForm.get('edad')?.errors?.['required']){ La edad es obligatoria }
+              @if(encuestaForm.get('edad')?.errors?.['max']){ Ingrese una edad valida }
+              @if(encuestaForm.get('edad')?.errors?.['min']){ Ingrese una edad valida }
+          </div>
+        }
+      </div>
+
+      <!-- NUmero -->
+      <div class="mb-3">
+        <input type="number"
+        formControlName="numero"
+        placeholder="Telefono"
+        class="form-control gamer-input"
+        >
+
+        @if(encuestaForm.get('numero')?.invalid && encuestaForm.get('numero')?.touched){
+          <div class="text-danger small mt-1">
+              @if(encuestaForm.get('numero')?.errors?.['required']){ El numero es obligatorio }
+              @if(encuestaForm.get('numero')?.errors?.['pattern']){ Ingrese una numero valida }
+          </div>
+        }
+      </div>
+
+      <!-- Pregunta 1 -->
+        <div class="mb-3">
+        
+            <p class="question-title">
+                ¿Te gustaron los juegos?
+            </p>
+        
+            <div class="form-check">
+                <input type="radio" class="form-check-input" value="si" formControlName="pregunta1" id="p1si">
+                <label for="p1si" class="form-check-label">Sí</label>
+            </div>
+        
+            <div class="form-check">
+                <input type="radio" class="form-check-input" value="no" formControlName="pregunta1" id="p1no">
+                <label for="p1no" class="form-check-label">No</label>
+            </div>
+        
+            @if(encuestaForm.get('pregunta1')?.invalid && encuestaForm.get('pregunta1')?.touched){
+            <div class="text-danger small mt-1">
+                @if(encuestaForm.get('pregunta1')?.errors?.['required']){
+                Debes seleccionar una opción
+                }
+            </div>
+            }
+        
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="mb-3">
+        
+            <p class="question-title">
+                ¿Qué juegos jugaste?
+            </p>
+        
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" formControlName="ahorcado" id="ahorcado">
+                <label class="form-check-label" for="ahorcado">Ahorcado</label>
+            </div>
+        
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" formControlName="mayorMenor" id="mayorMenor">
+                <label class="form-check-label" for="mayorMenor">Mayor o Menor</label>
+            </div>
+        
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" formControlName="preguntados" id="preguntados">
+                <label class="form-check-label" for="preguntados">Preguntados</label>
+            </div>
+        
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" formControlName="simonDice" id="simonDice">
+                <label class="form-check-label" for="simonDice">Simon Dice</label>
+            </div>
+        
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div class="mb-3">
+
+        <textarea
+            class="form-control gamer-input"
+            formControlName="pregunta3"
+            placeholder="¿Qué mejorarías de la app en general?"
+        ></textarea>
+
+        @if(encuestaForm.get('pregunta3')?.invalid && encuestaForm.get('pregunta3')?.touched){
+            <div class="text-danger small mt-1">
+
+            @if(encuestaForm.get('pregunta3')?.errors?.['required']){
+                Este campo es obligatorio
+            }
+
+            @if(encuestaForm.get('pregunta3')?.errors?.['minlength']){
+                Mínimo 6 caracteres
+            }
+
+            </div>
+        }
+
+        </div>
+
+      <!-- Mensaje de error  -->
+       
+      @if (errorMensaje()) {
+
+        <div class="error-box mt-3">
+          <span>⚠ {{ errorMensaje() }}</span>
+        </div>
+
+      }
+
+      <!-- Botón -->
+      <div class="d-grid mb-3">
+        <button type="submit" class="btn btn-gamer" [disabled]="encuestaForm.invalid">
+          @if(loading()){ 
+            <span 
+              class="spinner-border spinner-border-sm me-2"
+              role="status"
+              aria-hidden="true">
+            </span>
+            Guardando ... 
+          }@else { 
+            🚀 Guardar Encuesta
+          }
+        </button>
+      </div>
+</form>
+</div>
+
+@if(mostrarModal()) {
+
+<div class="modal-backdrop-custom">
+
+  <div class="modal-box">
+
+    <h2>🎉 ¡Gracias por completar la encuesta!</h2>
+
+    <p>
+      Tus respuestas fueron guardadas correctamente.
+    </p>
+
+    <button class="btn btn-gamer mt-3" (click)="irInicio()">
+      🏠 Volver al inicio
+    </button>
+
+  </div>
+
+</div>
+
+}
