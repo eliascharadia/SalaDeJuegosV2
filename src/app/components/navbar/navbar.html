@@ -35,7 +35,9 @@
       <a class="btn-link-gamer" routerLink="/chat">Chat Global</a>
       <a class="btn-link-gamer" routerLink="/listado">Listado</a>
       <a class="btn-link-gamer" routerLink="/encuesta">Encuesta</a>
+      @if(auth.user()?.es_admin){
       <a class="btn-link-gamer" routerLink="/resultados">Resultados</a>
+      }
     } @else {
       <a class="btn-link-gamer" routerLink="/login">Iniciar Sesión</a>
       <a class="btn-link-gamer" routerLink="/register">Registrarse</a>
@@ -67,7 +69,9 @@
       <a class="btn-link-gamer" routerLink="/chat" data-bs-dismiss="offcanvas">Chat Global</a>
       <a class="btn-link-gamer" routerLink="/listado" data-bs-dismiss="offcanvas">Listado</a>
       <a class="btn-link-gamer" routerLink="/encuesta" data-bs-dismiss="offcanvas">Encuesta</a>
+      @if(auth.user()?.es_admin){
       <a class="btn-link-gamer" routerLink="/resultados" data-bs-dismiss="offcanvas">Resultados</a>
+      }
     } @else {
       <a class="btn-link-gamer" routerLink="/login" data-bs-dismiss="offcanvas">Iniciar Sesión</a>
       <a class="btn-link-gamer" routerLink="/register" data-bs-dismiss="offcanvas">Registrarse</a>
