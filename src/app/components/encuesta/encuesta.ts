@@ -1,6 +1,6 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { Auth } from '../../services/auth';
 import { SupabaseService } from '../../services/supabase';
 
@@ -49,8 +49,8 @@ export class Encuesta {
 
   loading = signal(false);
   errorMensaje = signal<string | null>(null);
-  router: any;
-
+  mostrarModal = signal(false);
+  router = inject(Router);
 
   async onSubmit() {
     this.loading.set(true);
@@ -85,9 +85,14 @@ export class Encuesta {
 
     this.encuestaForm.reset();
 
-    this.router.navigate(['/resultados']);
+    // this.router.navigate(['/resultados']);
+    this.mostrarModal.set(true);
 
     this.loading.set(false);
+  }
+
+  irInicio() {
+    this.router.navigate(['/']);
   }
 
 }

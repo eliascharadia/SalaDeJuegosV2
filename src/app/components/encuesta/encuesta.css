@@ -102,3 +102,62 @@ button[type="submit"]:hover {
     transform: translateY(0);
   }
 }
+
+
+.modal-backdrop-custom {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+
+  background: rgba(0,0,0,0.8);
+  backdrop-filter: blur(6px);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-box {
+  background: linear-gradient(145deg, #0b0f1a, #111827);
+  border: 1px solid rgba(0,255,225,0.2);
+
+  padding: 30px;
+  border-radius: 16px;
+
+  text-align: center;
+  color: white;
+
+  box-shadow: 0 0 25px rgba(0,255,225,0.15);
+
+  max-width: 400px;
+  width: 90%;
+}
+
+.modal-box h2 {
+  color: #00ffe1;
+  text-shadow: 0 0 10px rgba(0,255,225,0.3);
+}
+
+.btn-gamer {
+  background: linear-gradient(90deg, #00ffe1, #00bcd4);
+  border: none;
+  color: #0b0f1a;
+
+  padding: 10px 20px;
+  border-radius: 12px;
+
+  font-weight: bold;
+
+  transition: 0.3s ease;
+}
+
+.btn-gamer:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(0,255,225,0.3);
+}

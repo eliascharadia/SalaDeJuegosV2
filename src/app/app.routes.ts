@@ -11,6 +11,8 @@ import { Preguntados } from './components/preguntados/preguntados';
 import { Simondice } from './components/simondice/simondice';
 import { Listado } from './components/listado/listado';
 import { Encuesta } from './components/encuesta/encuesta';
+import { adminGuard } from './guards/admin-guard';
+import { Resultadosencuestas } from './components/resultadosencuestas/resultadosencuestas';
 
 export const routes: Routes = [
     { path: '', component: BienvenidaHome },
@@ -19,6 +21,11 @@ export const routes: Routes = [
         path: '',
         component: BienvenidaHome,
         canActivate: [authGuard], // cuando haga el guard ponerlo aca
+    },
+    {
+        path: 'resultados',
+        component: Resultadosencuestas,
+        canActivate: [adminGuard]
     },
     {path: 'ahorcado', component: Ahorcado, canActivate: [authGuard]},
     {path: 'mayormenor', component: Mayormenor, canActivate: [authGuard]},

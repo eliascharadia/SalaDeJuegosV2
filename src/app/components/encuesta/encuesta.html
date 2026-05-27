@@ -165,6 +165,27 @@
           }
         </button>
       </div>
-
 </form>
 </div>
+
+@if(mostrarModal()) {
+
+<div class="modal-backdrop-custom">
+
+  <div class="modal-box">
+
+    <h2>🎉 ¡Gracias por completar la encuesta!</h2>
+
+    <p>
+      Tus respuestas fueron guardadas correctamente.
+    </p>
+
+    <button class="btn btn-gamer mt-3" (click)="irInicio()">
+      🏠 Volver al inicio
+    </button>
+
+  </div>
+
+</div>
+
+}

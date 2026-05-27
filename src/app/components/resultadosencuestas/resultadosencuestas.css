@@ -1,0 +1,66 @@
+
+
+.admin-panel {
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #0b0f1a, #05070d);
+}
+
+/* TITULO */
+.title {
+  color: #00ffe1;
+  text-shadow: 0 0 12px rgba(0,255,225,0.3);
+  font-weight: bold;
+}
+
+/* TABLA BASE */
+.gamer-table {
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(0,255,225,0.15);
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+/* HEADER */
+.gamer-table thead {
+  background: linear-gradient(90deg, #0b0f1a, #111827);
+}
+
+.gamer-table th {
+  color: #00ffe1;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* ROW HOVER */
+.table-row {
+  transition: 0.2s ease;
+}
+
+.table-row:hover {
+  background: rgba(0,255,225,0.08) !important;
+  transform: scale(1.01);
+}
+
+/* USER */
+.user-cell {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* BADGES */
+.badge {
+  font-size: 0.85rem;
+  border-radius: 10px;
+}
+
+/* FECHA */
+.date-cell {
+  color: rgba(255,255,255,0.7);
+}
+
+/* EFECTO GLASS */
+.table {
+  backdrop-filter: blur(6px);
+  background: rgba(255,255,255,0.03) !important;
+}
